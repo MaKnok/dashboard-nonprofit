@@ -1,114 +1,50 @@
+import Link from "next/link";
+import { institutionType } from "@/lib/data";
+
 const menuItems = [
   {
-    title: "MENU",
-    items: [
-      {
-        icon: "/home.png",
-        label: "Home",
-        href: "/",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/teacher.png",
-        label: "Teachers",
-        href: "/list/teachers",
-        visible: ["admin", "teacher"],
-      },
-      {
-        icon: "/student.png",
-        label: "Students",
-        href: "/list/students",
-        visible: ["admin", "teacher"],
-      },
-      {
-        icon: "/parent.png",
-        label: "Parents",
-        href: "/list/parents",
-        visible: ["admin", "teacher"],
-      },
-      {
-        icon: "/subject.png",
-        label: "Subjects",
-        href: "/list/subjects",
-        visible: ["admin"],
-      },
-      {
-        icon: "/class.png",
-        label: "Classes",
-        href: "/list/classes",
-        visible: ["admin", "teacher"],
-      },
-      {
-        icon: "/lesson.png",
-        label: "Lessons",
-        href: "/list/lessons",
-        visible: ["admin", "teacher"],
-      },
-      {
-        icon: "/exam.png",
-        label: "Exams",
-        href: "/list/exams",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/assignment.png",
-        label: "Assignments",
-        href: "/list/assignments",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/result.png",
-        label: "Results",
-        href: "/list/results",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/attendance.png",
-        label: "Attendance",
-        href: "/list/attendance",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/calendar.png",
-        label: "Events",
-        href: "/list/events",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/message.png",
-        label: "Messages",
-        href: "/list/messages",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/announcement.png",
-        label: "Announcements",
-        href: "/list/announcements",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-    ],
+    title: "home",
+    label: "Home",
+    href: "/admin",
   },
   {
-    title: "OTHER",
-    items: [
-      {
-        icon: "/profile.png",
-        label: "Profile",
-        href: "/profile",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/setting.png",
-        label: "Settings",
-        href: "/settings",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/logout.png",
-        label: "Logout",
-        href: "/logout",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-    ],
+    title: institutionType == "ngo" ? "donorLists" : "employees",
+    label: institutionType == "ngo" ? "Donor Lists" : "Employees",
+    href: institutionType == "ngo" ? "/donor-lists" : "employees",
+  },
+  {
+    title: "aiOutreach",
+    label: "AI Outreach",
+    href: "/ai-outreach",
+  },
+  {
+    title: "reports",
+    label: "Reports",
+    href: "/reports",
+  },
+  {
+    title: "campaigns",
+    label: "Campaigns",
+    href: "/campaigns",
   },
 ];
+
+const Menu = () => {
+  return (
+    <div className="flex flex-row gap-6">
+      {menuItems.map((i) => (
+        <div key={i.title} className="w-[115px] text-center">
+          <Link
+            href={i.href}
+            className="text-jhSecondary03 py-2 md:px-2 rounded-md hover:bg-jhSecondary02"
+            key={i.title}
+          >
+            <span>{i.label}</span>
+          </Link>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Menu;

@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import { metadataInfo } from "@/lib/data";
+import { fontFamily } from "./theme/typography";
+
+const institutionName: string = metadataInfo[0].institution;
+
+const faviconURL: string = `/favicon/${institutionName}/favicon.ico`;
 
 export const metadata: Metadata = {
-  title: "Lama Dev School Management Dashboard",
-  description: "Next.js School Management System",
+  title: metadataInfo[0].title,
+  description: metadataInfo[0].description,
 };
 
 export default function RootLayout({
@@ -16,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <link rel="icon" href={faviconURL} />
+      </head>
+      <body className={fontFamily.className}>{children}</body>
     </html>
   );
 }

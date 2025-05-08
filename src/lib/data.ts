@@ -1,6 +1,10 @@
+//import { cache } from "react";
+//import { eq } from "sequelize/types/lib/operators";
+//import { db } from "@/app/lib/db";
 // TEMPORARY DATA
 
 export let role = "admin";
+export let institutionType = "ngo";
 
 export const teachersData = [
   {
@@ -915,7 +919,6 @@ export const announcementsData = [
   },
 ];
 
-
 // YOU SHOULD CHANGE THE DATES OF THE EVENTS TO THE CURRENT DATE TO SEE THE EVENTS ON THE CALENDAR
 export const calendarEvents = [
   {
@@ -1059,5 +1062,50 @@ export const calendarEvents = [
     allDay: false,
     start: new Date(2024, 7, 16, 14, 0),
     end: new Date(2024, 7, 16, 14, 45),
+  },
+];
+
+// IMPORT METADATA INFORMATION DYNAMICALLY
+/*
+export const getPost = cache(async (id: string) => {
+  const res = await db.query.orgs.findFirst({ where: eq(orgs.id, id) })
+  return res
+})
+*/
+export const metadataInfo = [
+  {
+    institution: "jh-foundation",
+    type: "ngo",
+    title: "James Hollister Wellness Foundation",
+    description:
+      "The James Hollister Wellness Foundation extends its warmest welcome to all. Our mission is to save viable medication from going to waste and make a difference in the lives of individuals across the world who lack easy access to healthcare.",
+    colors: {
+      jhBackground: "#F0F0F0",
+      jhTopBar: "#FBFBFB",
+      jhSecondary01: "#8D8D8D",
+      jhSecondary02: "#D9D9D9",
+      jhSecondary03: "#3D3D3D",
+      jhWhite: "#FFFFFF",
+      jhPrimary01: "#F0000D",
+      jhPrimary02: "#3B00A9",
+      jhGreen: "#3DAE00",
+      jhYellow: "#EDBD00",
+    },
+    fontFamily: "poppins",
+  },
+];
+
+export const colors = [
+  {
+    jhBackground: metadataInfo[0].colors.jhBackground,
+    jhTopBar: metadataInfo[0].colors.jhTopBar,
+    jhSecondary01: metadataInfo[0].colors.jhSecondary01,
+    jhSecondary02: metadataInfo[0].colors.jhSecondary02,
+    jhSecondary03: metadataInfo[0].colors.jhSecondary03,
+    jhWhite: metadataInfo[0].colors.jhWhite,
+    jhPrimary01: metadataInfo[0].colors.jhPrimary01,
+    jhPrimary02: metadataInfo[0].colors.jhPrimary02,
+    jhGreen: metadataInfo[0].colors.jhGreen,
+    jhYellow: metadataInfo[0].colors.jhYellow,
   },
 ];
